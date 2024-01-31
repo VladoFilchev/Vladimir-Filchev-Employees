@@ -2,40 +2,32 @@ package com.sirmasolutionsinternproject.assignmentManager;
 
 
 import com.sirmasolutionsinternproject.models.Assignment;
+import com.sirmasolutionsinternproject.models.Employee;
+import com.sirmasolutionsinternproject.models.EmployeePair;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class AssignmentFilter {
 
-    public Map<String, Long> findLongestWorkingPair(List<Assignment> assignments) {
-        Map<String, Long> longestWorkingPair = new HashMap<>();
+    public Set<EmployeePair> findLongestWorkingPair(List<Assignment> assignments) {
 
-        for (int i = 0; i < assignments.size(); i++) {
-            for (int j = i + 1; j < assignments.size(); j++) {
-                Assignment assignment1 = assignments.get(i);
-                Assignment assignment2 = assignments.get(j);
+        Set<EmployeePair> employeePairs = new HashSet<>();
 
-                if (assignment1.getProjectId() == assignment2.getProjectId()) {
-                    LocalDate commonStartDate = assignment1.getDateFrom().isAfter(assignment2.getDateFrom()) ?
-                            assignment1.getDateFrom() : assignment2.getDateFrom();
-
-                    LocalDate commonEndDate = assignment1.getDateTo().isBefore(assignment2.getDateTo()) ?
-                            assignment1.getDateTo() : assignment2.getDateTo();
-
-                    long days = ChronoUnit.DAYS.between(commonStartDate, commonEndDate);
-
-                    if (days > 0) {
-                        String pairKey = assignment1.getEmpId() + ", " + assignment2.getEmpId();
-                        longestWorkingPair.put(pairKey, days);
-                    }
+        for (Assignment assignment : assignments) {
+            for (Assignment secondAssignment : assignments) {
+                if (assignment.equals(secondAssignment)) {
+                    continue;
+                }
+                if (assignment.getProjectId() == secondAssignment.getProjectId()) {
+                    Employee firstEmployee = new Employee(assignment.getEmpId(), assignment.getDateFrom(), assignment.getDateTo());
+                    Employee secondEmployee = new Employee(secondAssignment.getEmpId(), secondAssignment.getDateFrom(), secondAssignment.getDateTo());
+                    EmployeePair employeePair = new EmployeePair(assignment.getProjectId(), firstEmployee, secondEmployee);
+                    employeePairs.add(employeePair);
                 }
             }
         }
+        return employeePairs;
 
-        return longestWorkingPair;
     }
 }
