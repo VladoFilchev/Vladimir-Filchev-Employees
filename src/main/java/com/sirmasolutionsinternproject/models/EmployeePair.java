@@ -18,14 +18,29 @@ public class EmployeePair implements Comparable<EmployeePair> {
         this.timePeriod = calculatePeriod();
     }
 
-    @Override
-    public int compareTo(EmployeePair o) {
-        return this.timePeriod.compareTo(o.timePeriod);
+    public int getProjectID() {
+        return projectID;
+    }
+
+    public Long getTimePeriod() {
+        return timePeriod;
+    }
+
+    private Long calculatePeriod() {
+
+        LocalDate commonStartDate = firstEmployee.getDateFrom().isAfter(secondEmployee.getDateFrom()) ?
+                firstEmployee.getDateFrom() : secondEmployee.getDateFrom();
+
+        LocalDate commonEndDate = firstEmployee.getDateTo().isBefore(secondEmployee.getDateTo()) ?
+                firstEmployee.getDateTo() : secondEmployee.getDateTo();
+
+        return ChronoUnit.DAYS.between(commonStartDate, commonEndDate);
+
     }
 
     @Override
-    public String toString() {
-        return "Employees ID:\n"+ firstEmployee.getEmployeeID()+" , "+secondEmployee.getEmployeeID()+"\nProject ID:\n"+getProjectID()+"\nTime Period:\n"+getTimePeriod()+"\n";
+    public int compareTo(EmployeePair o) {
+        return this.timePeriod.compareTo(o.timePeriod);
     }
 
     @Override
@@ -41,23 +56,16 @@ public class EmployeePair implements Comparable<EmployeePair> {
         return Objects.hash(projectID);
     }
 
-    private Long calculatePeriod() {
-
-        LocalDate commonStartDate = firstEmployee.getDateFrom().isAfter(secondEmployee.getDateFrom()) ?
-                firstEmployee.getDateFrom() : secondEmployee.getDateFrom();
-
-        LocalDate commonEndDate = firstEmployee.getDateTo().isBefore(secondEmployee.getDateTo()) ?
-                firstEmployee.getDateTo() : secondEmployee.getDateTo();
-
-        return ChronoUnit.DAYS.between(commonStartDate, commonEndDate);
-
+    @Override
+    public String toString() {
+        return "Employees ID:\n" + firstEmployee.getEmployeeID() + " , " + secondEmployee.getEmployeeID() + "\nProject ID:\n" + getProjectID() + "\nTime Period:\n" + getTimePeriod() + "\n";
     }
 
-    public int getProjectID() {
-        return projectID;
+    public Employee getFirstEmployee() {
+        return firstEmployee;
     }
 
-    public Long getTimePeriod() {
-        return timePeriod;
+    public Employee getSecondEmployee() {
+        return secondEmployee;
     }
 }

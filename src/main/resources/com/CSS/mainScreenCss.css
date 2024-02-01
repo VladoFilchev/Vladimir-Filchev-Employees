@@ -1,0 +1,44 @@
+#root {
+    -fx-background-color: #f4f4f4;
+    -fx-border:5px;
+    -fx-border-color: #3928db;
+}
+
+#browseButton {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #ffffff;
+    -fx-border:3px;
+    -fx-border-color: #3928db;
+}
+
+#tableView {
+    -fx-background-color: #ffffff;
+    -fx-border:2px;
+    -fx-border-color: #3928db;
+}
+
+#tableView .column-header-background {
+    -fx-background-color: #3498db;
+    -fx-padding: 5 10;
+    -fx-border:4px;
+    -fx-border-color: #3928db;
+}
+
+#tableView .table-row-cell {
+    -fx-background-color: #ecf0f1;
+    -fx-border:4px;
+    -fx-border-color: #3928db;
+}
+
+#tableView .table-row-cell:odd {
+    -fx-background-color: #d2d7d3;
+    -fx-border:4px;
+    -fx-border-color: #3928db;
+}
+
+#tableView .table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-border:4px;
+    -fx-border-color: #3928db;
+}

@@ -12,12 +12,11 @@ import java.util.List;
 
 public class FileIO {
 
-    String filePath="C:\\Users\\Star huy 67\\Java Projects\\SirmaSolutionsInternProject\\src\\main\\resources\\CSVFiles\\assignments.csv";
     BufferedReader reader = null;
     String line = "";
     String regex =",";
 
-    public List<Assignment> readAndToList() throws IOException {
+    public List<Assignment> readAndToList(File file) throws IOException {
 
         List<Assignment> assignments = new ArrayList<>();
 
@@ -27,7 +26,7 @@ public class FileIO {
         LocalDate dateTo;
 
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            reader = new BufferedReader(new FileReader(file));
             while ((line = reader.readLine()) != null) {
 
                 String[] row = line.split(regex);

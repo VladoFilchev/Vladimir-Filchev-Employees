@@ -5,4 +5,6 @@ module com.sirmasolutionsinternproject {
                             
     opens com.sirmasolutionsinternproject to javafx.fxml;
     exports com.sirmasolutionsinternproject;
+    exports com.sirmasolutionsinternproject.Controller;
+    exports com.sirmasolutionsinternproject.UI;
 }
