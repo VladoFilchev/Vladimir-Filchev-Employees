@@ -47,6 +47,12 @@ public class MainScreenController {
     @FXML
     public TableColumn<DisplayData, Long> timeSpent;
 
+    /**
+     * Handles the action when the user clicks the "Browse" button to choose a CSV file.
+     *
+     * @param event The action event triggered by the button click.
+     */
+
     @FXML
     public void chooseFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -86,6 +92,10 @@ public class MainScreenController {
             }
         }
     }
+
+    /**
+     * Initializes the TableView columns and associates them with the properties of DisplayData.
+     */
 
     @FXML
     public void initialize() {

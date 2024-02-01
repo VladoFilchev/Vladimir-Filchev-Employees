@@ -26,6 +26,13 @@ public class EmployeePair implements Comparable<EmployeePair> {
         return timePeriod;
     }
 
+    /**
+     * Calculates the common time period during which both employees worked on the project.
+     * If the common time period is negative, it returns 0.
+     *
+     * @return The calculated time period.
+     */
+
     private Long calculatePeriod() {
 
         LocalDate commonStartDate = firstEmployee.getDateFrom().isAfter(secondEmployee.getDateFrom()) ?
@@ -33,6 +40,11 @@ public class EmployeePair implements Comparable<EmployeePair> {
 
         LocalDate commonEndDate = firstEmployee.getDateTo().isBefore(secondEmployee.getDateTo()) ?
                 firstEmployee.getDateTo() : secondEmployee.getDateTo();
+
+
+        if(ChronoUnit.DAYS.between(commonStartDate, commonEndDate)<0){
+            return 0L;
+        }
 
         return ChronoUnit.DAYS.between(commonStartDate, commonEndDate);
 

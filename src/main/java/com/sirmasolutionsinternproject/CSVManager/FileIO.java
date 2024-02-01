@@ -16,7 +16,17 @@ public class FileIO {
     String line = "";
     String regex =",";
 
+
+    /**
+     * Reads the content of a CSV file and converts it into a list of Assignment objects.
+     *
+     * @param file The CSV file to read.
+     * @return A list of Assignment objects representing the data in the CSV file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public List<Assignment> readAndToList(File file) throws IOException {
+
+
 
         List<Assignment> assignments = new ArrayList<>();
 
@@ -24,6 +34,7 @@ public class FileIO {
         int projID = 0;
         LocalDate dateFrom;
         LocalDate dateTo;
+
 
         try {
             reader = new BufferedReader(new FileReader(file));
@@ -46,9 +57,6 @@ public class FileIO {
                 assignments.add(assignment);
             }
 
-            for (Assignment assignment : assignments) {
-                System.out.println(assignment+"\n");
-            }
         } catch (Exception e) {
             e.printStackTrace();
 

@@ -10,6 +10,14 @@ import java.util.*;
 
 public class AssignmentFilter {
 
+
+    /**
+     * Finds pairs of employees who have worked on the same project and creates EmployeePair objects.
+     *
+     * @param assignments A list of Assignment objects representing employees' project assignments.
+     * @return A set of EmployeePair objects representing pairs of employees working on the same project.
+     */
+
     public Set<EmployeePair> findLongestWorkingPair(List<Assignment> assignments) {
 
         Set<EmployeePair> employeePairs = new HashSet<>();
